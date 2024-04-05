@@ -1,10 +1,4 @@
-import { useMemo } from "react"
-
-function Header({cart, removeFromCart, increaseItemQuantity, decreaseItemQuantity, clearCart}) {
-
-    //Derivative State
-    const isCartEmpty = useMemo( () => cart.length === 0, [cart] )
-    const totalCartPrice = useMemo( () => cart.reduce((total, item) => total + (item.price * item.quantity), 0), [cart] )
+function Header({cart, removeFromCart, increaseItemQuantity, decreaseItemQuantity, clearCart, isCartEmpty, totalCartPrice}) {
 
     return(
         <>
