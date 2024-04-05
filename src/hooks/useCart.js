@@ -15,50 +15,50 @@ const useCart = () => {
     const MIN_ITEMS = 1
 
     useEffect( () => {
-    localStorage.setItem('cart', JSON.stringify(cart))
+        localStorage.setItem('cart', JSON.stringify(cart))
     }, [cart])
 
     function addToCart(item){
-    //findIndex returns -1 if the element doesnt exists.
-    const itemIndex = cart.findIndex((indexItem) => indexItem.id === item.id)
+        //findIndex returns -1 if the element doesnt exists.
+        const itemIndex = cart.findIndex((indexItem) => indexItem.id === item.id)
 
-    if(itemIndex >= 0){
-        const updateCart = [...cart]    
-        if(updateCart[itemIndex].quantity >= MAX_ITEMS) return 
-        updateCart[itemIndex] = {...updateCart[itemIndex], quantity: updateCart[itemIndex].quantity + 1}
-        setCart(updateCart)
+        if(itemIndex >= 0){
+            const updateCart = [...cart]    
+            if(updateCart[itemIndex].quantity >= MAX_ITEMS) return 
+            updateCart[itemIndex] = {...updateCart[itemIndex], quantity: updateCart[itemIndex].quantity + 1}
+            setCart(updateCart)
 
-    }else{
-        setCart([...cart, {...item, quantity: 1}])
-    }
+        }else{
+            setCart([...cart, {...item, quantity: 1}])
+        }
     }
 
     function removeFromCart(itemId){
-    setCart(cart.filter((item)=>item.id !== itemId))
+        setCart(cart.filter((item)=>item.id !== itemId))
     }
 
     function increaseItemQuantity(itemId){
-    const updateCart = cart.map((item) => {
-        if(item.id === itemId && item.quantity < MAX_ITEMS){
-        return {...item, quantity: item.quantity + 1}
-        }
-        return item
-    })
-    setCart(updateCart)
+        const updateCart = cart.map((item) => {
+            if(item.id === itemId && item.quantity < MAX_ITEMS){
+            return {...item, quantity: item.quantity + 1}
+            }
+            return item
+        })
+        setCart(updateCart)
     }
 
     function decreaseItemQuantity(itemId){
-    const updateCart = cart.map((item) => {
-        if(item.id === itemId && item.quantity > MIN_ITEMS){
-        return {...item, quantity: item.quantity - 1}
-        }
-        return item
-    })
-    setCart(updateCart)
+        const updateCart = cart.map((item) => {
+            if(item.id === itemId && item.quantity > MIN_ITEMS){
+            return {...item, quantity: item.quantity - 1}
+            }
+            return item
+        })
+        setCart(updateCart)
     }
 
     function clearCart(){
-    setCart([])
+        setCart([])
     }
 
     //Derivative State
